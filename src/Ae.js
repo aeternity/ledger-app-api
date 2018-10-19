@@ -51,7 +51,7 @@ export default class Ae {
 
   /**
    * get aeternity address for a given account index.
-   * @param accountIndex
+   * @param {number} accountIndex
    * @option verify optionally enable or disable address verification
    * @return address
    * @example
@@ -76,8 +76,11 @@ export default class Ae {
 
   /**
    * You can sign a transaction and retrieve signature given the raw transaction and the index of the account to sign
+   * @param {number} accountIndex
+   * @param {string} rawTxHex
+   * @return signature
    * @example
-   ae.signTransaction(0, "e8018504e3b292008252089428ee52a8f3d6e5d15f8b131996950d7f296c7952872bd72a2487400080").then(signature => ...)
+   * ae.signTransaction(0, "e8018504e3b292008252089428ee52a8f3d6e5d15f8b131996950d7f296c7952872bd72a2487400080").then(signature => ...)
    */
   async signTransaction(
     accountIndex: number,
@@ -119,6 +122,9 @@ export default class Ae {
   }
 
   /**
+   * You can get an app configuration
+   * @example
+   * ae.getAppConfiguration().then(config => ...)
    */
   getAppConfiguration(): Promise<{
     arbitraryDataEnabled: number,
@@ -137,8 +143,11 @@ export default class Ae {
 
   /**
   * You can sign a message and retrieve signature given the message and the index of the account to sign.
+  * @param {number} accountIndex
+  * @param {string} messageHex
+  * @return signature
   * @example
-  ae.signPersonalMessage(0, Buffer.from("test").toString("hex")).then(signature => ...)
+  * ae.signPersonalMessage(0, Buffer.from("test").toString("hex")).then(signature => ...)
    */
   async signPersonalMessage(
     accountIndex: number,
